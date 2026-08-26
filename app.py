@@ -5,9 +5,6 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.models import load_model
 import tensorflow as tf
 
-# ==============================
-# CONFIG
-# ==============================
 SEQ_LEN = 12
 FEATURES = 3  # value, month, year
 
@@ -48,9 +45,6 @@ def forecast_next_n_weeks(model, scaler, last_sequence, n_weeks):
 
     return scaler.inverse_transform(temp)[:, 0]
 
-# ==============================
-# UI HEADER
-# ==============================
 st.title("📈 Sales Demand Forecasting")
 st.write(
     "Forecast **future weekly sales (1–10 weeks)** using a **GRU deep learning model**"
@@ -58,9 +52,7 @@ st.write(
 
 st.divider()
 
-# ==============================
 # USER INPUT
-# ==============================
 st.subheader("Enter Last 12 Weeks Data")
 
 sales, months, years = [], [], []
@@ -124,9 +116,6 @@ if st.button("🔮 Forecast Sales"):
         weeks_ahead
     )
 
-    # --------------------------
-    # TABLE
-    # --------------------------
     st.subheader("📊 Forecast Results")
     result_table = {
         "Week": [f"Week {i+1}" for i in range(weeks_ahead)],
